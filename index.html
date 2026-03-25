@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Plano de Voo | Guilherme Delfino de Souza</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --blue: #3b82f6; --blue-light: #eff6ff; --blue-mid: #dbeafe;
+  --orange: #f97316; --orange-light: #fff7ed;
+  --green: #22c55e; --green-light: #f0fdf4;
+  --purple: #a855f7; --purple-light: #faf5ff;
+  --pink: #ec4899; --pink-light: #fdf2f8;
+  --cyan: #06b6d4; --cyan-light: #ecfeff;
+  --yellow: #eab308; --yellow-light: #fefce8;
+  --text: #1e293b; --text-mid: #475569; --text-light: #94a3b8;
+  --bg: #f0f6ff; --white: #ffffff;
+  --radius: 20px; --shadow: 0 4px 24px rgba(59,130,246,0.10); --shadow-lg: 0 8px 40px rgba(59,130,246,0.16);
+}
+body { background: var(--bg); color: var(--text); font-family: 'Nunito', sans-serif; min-height: 100vh; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 45%, #0891b2 100%);
+  padding: 56px 50px 72px; position: relative; overflow: hidden;
+}
+.hero .blob1 {
+  position:absolute;top:-90px;right:-90px;width:360px;height:360px;
+  background:rgba(255,255,255,0.08);border-radius:50%;pointer-events:none;
+}
+.hero .blob2 {
+  position:absolute;bottom:-70px;left:32%;width:240px;height:240px;
+  background:rgba(255,255,255,0.05);border-radius:50%;pointer-events:none;
+}
+.hero .blob3 {
+  position:absolute;top:30px;left:-60px;width:180px;height:180px;
+  background:rgba(255,255,255,0.04);border-radius:50%;pointer-events:none;
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;
+  display: flex; justify-content: space-between; align-items: center; gap: 40px;
+}
+.hero-text .eyebrow {
+  background: rgba(255,255,255,0.18); color: #fff; font-size: 12px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase; padding: 7px 18px; border-radius: 50px;
+  display: inline-block; margin-bottom: 22px; border: 1px solid rgba(255,255,255,0.25);
+}
+.hero-text h1 {
+  font-family: 'Poppins', sans-serif; font-size: clamp(36px,5vw,58px); font-weight: 800;
+  color: #fff; line-height: 1.08; margin-bottom: 14px;
+}
+.hero-text h1 .accent { color: #fde68a; }
+.hero-text p { font-size: 16px; color: rgba(255,255,255,0.80); margin-bottom: 28px; font-weight: 600; }
+.hero-badge {
+  background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.3);
+  color: #fff; padding: 11px 22px; border-radius: 50px; font-size: 14px; font-weight: 800;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.hero-cards { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+.mini-card {
+  background: rgba(255,255,255,0.16); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.28); border-radius: 16px;
+  padding: 14px 20px; display: flex; align-items: center; gap: 12px;
+  min-width: 210px; animation: floatUp 0.8s ease both;
+}
+.mini-card:nth-child(1){animation-delay:0.2s}.mini-card:nth-child(2){animation-delay:0.35s}.mini-card:nth-child(3){animation-delay:0.5s}
+.mc-icon {
+  font-size: 24px; width: 42px; height: 42px; background: rgba(255,255,255,0.22);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.mc-label { font-size: 11px; color: rgba(255,255,255,0.72); font-weight: 700; letter-spacing:0.5px; }
+.mc-value { font-size: 15px; font-weight: 900; color: #fff; }
+
+/* CONTENT */
+.content { max-width: 1100px; margin: 0 auto; padding: 50px 40px 80px; }
+
+/* SECTION HEADER */
+.sec-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px; margin-top: 52px; animation: fadeUp 0.6s ease both;
+}
+.sec-num {
+  width: 42px; height: 42px; border-radius: 13px; font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+.sec-header h2 { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 800; color: var(--text); }
+.sec-header h2 span { font-size: 14px; font-weight: 600; color: var(--text-light); margin-left: 8px; }
+
+/* GRIDS */
+.cards-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 18px; }
+.cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+
+/* CARD */
+.card {
+  background: var(--white); border-radius: var(--radius); padding: 26px 24px;
+  box-shadow: var(--shadow); position: relative; overflow: hidden;
+  animation: fadeUp 0.6s ease both; transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.card-icon {
+  width: 48px; height: 48px; border-radius: 14px; font-size: 24px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.card-title { font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); }
+.card-sub { font-size: 12px; color: var(--text-light); font-weight: 600; }
+
+/* SKILL BARS */
+.skill-list { display: flex; flex-direction: column; gap: 13px; }
+.skill-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.skill-name { font-size: 13px; font-weight: 700; color: var(--text); }
+.skill-pct { font-size: 12px; font-weight: 900; color: #fff; padding: 2px 9px; border-radius: 50px; }
+.skill-track { height: 9px; background: #f1f5f9; border-radius: 10px; overflow: hidden; }
+.skill-fill { height: 100%; border-radius: 10px; animation: growBar 1.2s cubic-bezier(.4,0,.2,1) both; animation-delay: 0.3s; }
+@keyframes growBar { from { width: 0 !important; } }
+
+/* TAGS */
+.tag-group-label {
+  font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: 8px; margin-top: 14px;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag { font-size: 12px; font-weight: 800; padding: 5px 13px; border-radius: 50px; }
+
+/* PLANOS */
+.plano-badge { font-size: 11px; font-weight: 900; padding: 4px 13px; border-radius: 50px; letter-spacing: 1px; text-transform: uppercase; }
+.plano-items { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.plano-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; line-height: 1.55; color: var(--text-mid); font-weight: 600; }
+.plano-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+
+/* TIMELINE */
+.timeline-wrap { background: var(--white); border-radius: var(--radius); padding: 38px 36px; box-shadow: var(--shadow); animation: fadeUp 0.6s ease both; }
+.tl-row { display: grid; grid-template-columns: 108px 1fr; gap: 24px; }
+.tl-row + .tl-row { margin-top: 32px; }
+.tl-left { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.tl-bubble {
+  width: 70px; height: 70px; border-radius: 20px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+.tl-bubble .yr { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 900; line-height: 1; }
+.tl-bubble .lbl { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; opacity: 0.7; }
+.tl-connector { width: 3px; flex: 1; min-height: 30px; border-radius: 3px; margin-top: 7px; opacity: 0.2; }
+.tl-right { padding-top: 8px; }
+.tl-tag { font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 50px; letter-spacing:0.5px; display: inline-block; margin-bottom: 8px; }
+.tl-right h3 { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 11px; }
+.tl-list { display: flex; flex-direction: column; gap: 7px; }
+.tl-item { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--text-mid); line-height: 1.5; font-weight: 600; }
+.tl-ico { font-size: 16px; flex-shrink: 0; margin-top: 0; }
+
+/* SMART */
+.smart-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; animation: fadeUp 0.6s ease both; }
+.smart-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.smart-top { padding: 22px 24px 14px; display: flex; align-items: center; gap: 12px; }
+.smart-icon { width: 50px; height: 50px; border-radius: 14px; font-size: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.smart-top-text h3 { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; line-height: 1.3; color: var(--text); margin-top: 4px; }
+.smart-rows { padding: 6px 0 12px; }
+.smart-row { display: grid; grid-template-columns: 54px 1fr; align-items: center; padding: 10px 24px; border-top: 1px solid #f1f5f9; gap: 12px; }
+.smart-letter-box { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 900; }
+.smart-sublabel { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 2px; }
+.smart-text { font-size: 13px; font-weight: 600; color: var(--text-mid); line-height: 1.45; }
+
+/* FOOTER */
+.footer {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb, #0891b2);
+  padding: 40px 50px; display: flex; justify-content: space-between; align-items: center;
+}
+.footer-text h3 { font-family: 'Poppins', sans-serif; font-size: 21px; font-weight: 900; color: #fff; margin-bottom: 4px; }
+.footer-text p { font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 600; }
+.footer-chips { display: flex; gap: 12px; }
+.footer-chip {
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.28);
+  color: #fff; padding: 9px 18px; border-radius: 50px; font-size: 13px; font-weight: 800;
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes floatUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.19s}
+
+@media print {
+  *{ -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+  .card:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="blob1"></div><div class="blob2"></div><div class="blob3"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="eyebrow">✈️ Linha do Tempo Futura</div>
+      <h1>Meu Plano<br>de <span class="accent">Voo</span> 🚀</h1>
+      <p>Minha jornada do presente ao futuro que construo todo dia.</p>
+      <div class="hero-badge">👤 Guilherme Delfino de Souza &nbsp;·&nbsp; 18 anos &nbsp;·&nbsp; 2025</div>
+    </div>
+    <div class="hero-cards">
+      <div class="mini-card">
+        <div class="mc-icon">🎓</div>
+        <div><div class="mc-label">Graduação</div><div class="mc-value">Ciências de Dados</div></div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-icon">💡</div>
+        <div><div class="mc-label">Projeto em desenvolvimento</div><div class="mc-value">Mentallis</div></div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-icon">🌍</div>
+        <div><div class="mc-label">Objetivo principal</div><div class="mc-value">Empreendedor Tech</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- 01 HOJE -->
+  <div class="sec-header">
+    <div class="sec-num" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">01</div>
+    <h2>Hoje <span>· Meu Ponto de Partida</span></h2>
+  </div>
+
+  <div class="cards-3">
+    <!-- Soft Skills -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:#eff6ff;">💬</div>
+        <div><div class="card-title">Soft Skills</div><div class="card-sub">Habilidades comportamentais</div></div>
+      </div>
+      <div class="skill-list">
+        <div>
+          <div class="skill-top"><span class="skill-name">💬 Comunicação</span><span class="skill-pct" style="background:#3b82f6">100%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4)"></div></div>
+        </div>
+        <div>
+          <div class="skill-top"><span class="skill-name">🤝 Trabalho em Equipe</span><span class="skill-pct" style="background:#22c55e">90%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:90%;background:linear-gradient(90deg,#22c55e,#86efac)"></div></div>
+        </div>
+        <div>
+          <div class="skill-top"><span class="skill-name">📋 Organização</span><span class="skill-pct" style="background:#ec4899">85%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:85%;background:linear-gradient(90deg,#ec4899,#f9a8d4)"></div></div>
+        </div>
+        <div>
+          <div class="skill-top"><span class="skill-name">🧠 Int. Emocional</span><span class="skill-pct" style="background:#a855f7">75%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:75%;background:linear-gradient(90deg,#a855f7,#d8b4fe)"></div></div>
+        </div>
+        <div>
+          <div class="skill-top"><span class="skill-name">🚀 Liderança</span><span class="skill-pct" style="background:#f97316">70%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:70%;background:linear-gradient(90deg,#f97316,#fdba74)"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hard Skills -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:#ecfeff;">🖥️</div>
+        <div><div class="card-title">Hard Skills</div><div class="card-sub">Habilidades técnicas</div></div>
+      </div>
+      <div class="skill-list">
+        <div>
+          <div class="skill-top"><span class="skill-name">🖥️ Habilidades Digitais</span><span class="skill-pct" style="background:#06b6d4">100%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:100%;background:linear-gradient(90deg,#06b6d4,#67e8f9)"></div></div>
+        </div>
+        <div>
+          <div class="skill-top"><span class="skill-name">🌐 Idiomas</span><span class="skill-pct" style="background:#06b6d4">100%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:100%;background:linear-gradient(90deg,#06b6d4,#67e8f9)"></div></div>
+        </div>
+        <div>
+          <div class="skill-top"><span class="skill-name">💰 Finanças Pessoais</span><span class="skill-pct" style="background:#eab308">80%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:80%;background:linear-gradient(90deg,#eab308,#fde047)"></div></div>
+        </div>
+        <div>
+          <div class="skill-top"><span class="skill-name">📊 Minha Profissão</span><span class="skill-pct" style="background:#3b82f6">60%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:60%;background:linear-gradient(90deg,#3b82f6,#93c5fd)"></div></div>
+        </div>
+      </div>
+      <div class="tag-group-label" style="margin-top:18px;">🔧 A desenvolver</div>
+      <div class="tags">
+        <span class="tag" style="background:#ecfeff;color:#0891b2;">🐍 Python avançado</span>
+        <span class="tag" style="background:#eff6ff;color:#2563eb;">📊 Ciência de Dados</span>
+        <span class="tag" style="background:#f0fdf4;color:#16a34a;">🇺🇸 Inglês fluente</span>
+      </div>
+    </div>
+
+    <!-- Valores -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:#faf5ff;">✨</div>
+        <div><div class="card-title">Valores & Hobbies</div><div class="card-sub">Quem eu sou por dentro</div></div>
+      </div>
+      <div class="tag-group-label">❤️ Valores</div>
+      <div class="tags">
+        <span class="tag" style="background:#fdf2f8;color:#db2777;">👨‍👩‍👦 Família</span>
+        <span class="tag" style="background:#faf5ff;color:#9333ea;">📈 Evolução</span>
+        <span class="tag" style="background:#eff6ff;color:#2563eb;">🤝 Amizade</span>
+        <span class="tag" style="background:#f0fdf4;color:#16a34a;">📚 Aprendizado</span>
+        <span class="tag" style="background:#fff7ed;color:#ea580c;">🏆 Realização</span>
+      </div>
+      <div class="tag-group-label">🎮 Hobbies</div>
+      <div class="tags">
+        <span class="tag" style="background:#eff6ff;color:#2563eb;">💻 Programação</span>
+        <span class="tag" style="background:#f0fdf4;color:#16a34a;">🛠️ Projetos pessoais</span>
+        <span class="tag" style="background:#faf5ff;color:#9333ea;">🎮 Video Game</span>
+      </div>
+      <div class="tag-group-label">⚡ Estado de fluxo</div>
+      <div style="background:#fffbeb;border-radius:14px;padding:13px 15px;margin-top:4px;border-left:4px solid #eab308;">
+        <div style="font-size:13px;color:#92400e;line-height:1.65;font-weight:700;font-style:italic;">"Tempo voa quando desenvolvo ou programo um sistema do meu interesse" 🔥</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 ONDE QUERO CHEGAR -->
+  <div class="sec-header" style="animation-delay:.1s">
+    <div class="sec-num" style="background:linear-gradient(135deg,#f97316,#eab308);">02</div>
+    <h2>Onde Quero Chegar <span>· Plano A & Plano B</span></h2>
+  </div>
+
+  <div class="cards-2">
+    <div class="card" style="border-top:5px solid #f97316;">
+      <div class="card-header">
+        <div class="card-icon" style="background:#fff7ed;font-size:26px;">🏢</div>
+        <div>
+          <span class="plano-badge" style="background:#fff7ed;color:#ea580c;">🅐 PLANO A</span>
+          <div class="card-title" style="margin-top:5px;">Empreendedor Tech</div>
+        </div>
+      </div>
+      <div class="plano-items">
+        <div class="plano-item"><div class="plano-dot" style="background:#f97316;"></div><span>Escalar o <strong style="color:#ea580c;">Mentallis</strong> — plataforma de saúde psicológica e produtividade para universitários</span></div>
+        <div class="plano-item"><div class="plano-dot" style="background:#f97316;"></div><span>Criar uma <strong style="color:#ea580c;">agência de SaaS</strong> resolvendo dores reais do mercado</span></div>
+        <div class="plano-item"><div class="plano-dot" style="background:#f97316;"></div><span>Fundar uma <strong style="color:#ea580c;">empresa de dados</strong> — análise, tratamento e previsão para outras empresas</span></div>
+        <div class="plano-item"><div class="plano-dot" style="background:#f97316;"></div><span>Ser dono de múltiplos negócios com total liberdade e impacto social real</span></div>
+        <div class="plano-item"><div class="plano-dot" style="background:#f97316;"></div><span>Cuidar da família e conquistar tudo que sempre desejou 💛</span></div>
+      </div>
+    </div>
+    <div class="card" style="border-top:5px solid #3b82f6;">
+      <div class="card-header">
+        <div class="card-icon" style="background:#eff6ff;font-size:26px;">📊</div>
+        <div>
+          <span class="plano-badge" style="background:#eff6ff;color:#2563eb;">🅑 PLANO B</span>
+          <div class="card-title" style="margin-top:5px;">Cientista de Dados Sênior</div>
+        </div>
+      </div>
+      <div class="plano-items">
+        <div class="plano-item"><div class="plano-dot" style="background:#3b82f6;"></div><span>Tornar-se um <strong style="color:#2563eb;">grande Cientista de Dados</strong> com destaque internacional</span></div>
+        <div class="plano-item"><div class="plano-dot" style="background:#3b82f6;"></div><span>Trabalhar para uma <strong style="color:#2563eb;">grande empresa no exterior</strong> com excelente remuneração</span></div>
+        <div class="plano-item"><div class="plano-dot" style="background:#3b82f6;"></div><span><strong style="color:#2563eb;">🏠 Home office</strong> com liberdade geográfica total</span></div>
+        <div class="plano-item"><div class="plano-dot" style="background:#3b82f6;"></div><span>Alcançar <strong style="color:#2563eb;">liberdade financeira</strong> e total tranquilidade</span></div>
+        <div class="plano-item"><div class="plano-dot" style="background:#3b82f6;"></div><span>Viver em paz, com qualidade de vida e tempo para o que importa ✌️</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 PLANEJAMENTO -->
+  <div class="sec-header" style="animation-delay:.15s">
+    <div class="sec-num" style="background:linear-gradient(135deg,#a855f7,#ec4899);">03</div>
+    <h2>Meu Planejamento <span>· Curto, Médio e Longo Prazo</span></h2>
+  </div>
+
+  <div class="timeline-wrap">
+    <!-- 2 anos -->
+    <div class="tl-row">
+      <div class="tl-left">
+        <div class="tl-bubble" style="background:linear-gradient(135deg,#fff7ed,#fed7aa);color:#c2410c;">
+          <span class="yr">2028</span><span class="lbl">2 anos</span>
+        </div>
+        <div class="tl-connector" style="background:#f97316;"></div>
+      </div>
+      <div class="tl-right">
+        <span class="tl-tag" style="background:#fff7ed;color:#ea580c;">🌱 Curto Prazo — Bases Sólidas</span>
+        <h3>Construindo os alicerces</h3>
+        <div class="tl-list">
+          <div class="tl-item"><span class="tl-ico">🎓</span><span>Concluir a faculdade de Ciências de Dados</span></div>
+          <div class="tl-item"><span class="tl-ico">💼</span><span>Ingressar em empresa de qualidade, preferencialmente no exterior</span></div>
+          <div class="tl-item"><span class="tl-ico">🧠</span><span>Ter o Mentallis rodando no mercado tecnológico</span></div>
+          <div class="tl-item"><span class="tl-ico">🏗️</span><span>Dar início à criação da agência de SaaS</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- 5 anos -->
+    <div class="tl-row">
+      <div class="tl-left">
+        <div class="tl-bubble" style="background:linear-gradient(135deg,#faf5ff,#e9d5ff);color:#7e22ce;">
+          <span class="yr">2031</span><span class="lbl">5 anos</span>
+        </div>
+        <div class="tl-connector" style="background:#a855f7;"></div>
+      </div>
+      <div class="tl-right">
+        <span class="tl-tag" style="background:#faf5ff;color:#9333ea;">📈 Médio Prazo — Expansão</span>
+        <h3>Crescendo e consolidando</h3>
+        <div class="tl-list">
+          <div class="tl-item"><span class="tl-ico">🌍</span><span>Home office para empresa no exterior — nível sênior</span></div>
+          <div class="tl-item"><span class="tl-ico">🚀</span><span>Mentallis evoluído com base crescente de usuários</span></div>
+          <div class="tl-item"><span class="tl-ico">⚙️</span><span>Agência de SaaS operando no mercado</span></div>
+          <div class="tl-item"><span class="tl-ico">📊</span><span>Empresa de dados em fase de início</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- 10 anos -->
+    <div class="tl-row">
+      <div class="tl-left">
+        <div class="tl-bubble" style="background:linear-gradient(135deg,#ecfeff,#a5f3fc);color:#0e7490;">
+          <span class="yr">2036</span><span class="lbl">10 anos</span>
+        </div>
+      </div>
+      <div class="tl-right">
+        <span class="tl-tag" style="background:#ecfeff;color:#0891b2;">🏆 Longo Prazo — Total Liberdade</span>
+        <h3>A vida que sempre quis</h3>
+        <div class="tl-list">
+          <div class="tl-item"><span class="tl-ico">🏢</span><span>Todas as empresas consolidadas e rodando de forma autônoma</span></div>
+          <div class="tl-item"><span class="tl-ico">🔓</span><span>Liberdade total — sem necessidade de trabalhar como empregado</span></div>
+          <div class="tl-item"><span class="tl-ico">💛</span><span>Família amparada e todas as metas conquistadas</span></div>
+          <div class="tl-item"><span class="tl-ico">♾️</span><span>Sempre evoluindo e aprimorando seus negócios</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 SMART -->
+  <div class="sec-header" style="animation-delay:.2s">
+    <div class="sec-num" style="background:linear-gradient(135deg,#22c55e,#06b6d4);">04</div>
+    <h2>Metas SMART <span>· Plano A & Plano B</span></h2>
+  </div>
+
+  <div class="smart-wrap">
+    <!-- SMART A -->
+    <div class="smart-card" style="border-top:5px solid #f97316;">
+      <div class="smart-top">
+        <div class="smart-icon" style="background:#fff7ed;">🏢</div>
+        <div class="smart-top-text">
+          <span class="plano-badge" style="background:#fff7ed;color:#ea580c;font-size:10px;">🅐 PLANO A</span>
+          <h3>Atingir 500 usuários no Mentallis e fechar 1º cliente na agência de SaaS em 12 meses</h3>
+        </div>
+      </div>
+      <div class="smart-rows">
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#fff7ed;color:#ea580c;">S</div>
+          <div><div class="smart-sublabel">Específico</div><div class="smart-text">Lançar o Mentallis, atingir 500 usuários ativos e fechar o primeiro cliente na agência de SaaS</div></div>
+        </div>
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#fff7ed;color:#ea580c;">M</div>
+          <div><div class="smart-sublabel">Mensurável</div><div class="smart-text">500 usuários cadastrados + 1 contrato fechado na agência</div></div>
+        </div>
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#fff7ed;color:#ea580c;">A</div>
+          <div><div class="smart-sublabel">Alcançável</div><div class="smart-text">Realista com divulgação em universidades e networking nas primeiras turmas</div></div>
+        </div>
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#fff7ed;color:#ea580c;">R</div>
+          <div><div class="smart-sublabel">Relevante</div><div class="smart-text">Valida os negócios, gera receita inicial e abre portas para escala e investimentos</div></div>
+        </div>
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#fff7ed;color:#ea580c;">T</div>
+          <div><div class="smart-sublabel">Prazo</div><div class="smart-text">⏱️ 12 meses após o lançamento oficial das plataformas</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- SMART B -->
+    <div class="smart-card" style="border-top:5px solid #3b82f6;">
+      <div class="smart-top">
+        <div class="smart-icon" style="background:#eff6ff;">📊</div>
+        <div class="smart-top-text">
+          <span class="plano-badge" style="background:#eff6ff;color:#2563eb;font-size:10px;">🅑 PLANO B</span>
+          <h3>Conquistar vaga de Cientista de Dados Júnior em empresa no exterior</h3>
+        </div>
+      </div>
+      <div class="smart-rows">
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#eff6ff;color:#2563eb;">S</div>
+          <div><div class="smart-sublabel">Específico</div><div class="smart-text">Conseguir contrato como Cientista de Dados Júnior em empresa internacional</div></div>
+        </div>
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#eff6ff;color:#2563eb;">M</div>
+          <div><div class="smart-sublabel">Mensurável</div><div class="smart-text">Contrato assinado + primeira renda em moeda estrangeira (USD/EUR)</div></div>
+        </div>
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#eff6ff;color:#2563eb;">A</div>
+          <div><div class="smart-sublabel">Alcançável</div><div class="smart-text">Realista com portfólio sólido, inglês fluente e networking online ativo</div></div>
+        </div>
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#eff6ff;color:#2563eb;">R</div>
+          <div><div class="smart-sublabel">Relevante</div><div class="smart-text">Garante liberdade financeira e base para sustentar os projetos pessoais</div></div>
+        </div>
+        <div class="smart-row">
+          <div class="smart-letter-box" style="background:#eff6ff;color:#2563eb;">T</div>
+          <div><div class="smart-sublabel">Prazo</div><div class="smart-text">⏱️ 18 meses após a conclusão da faculdade</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-text">
+    <h3>✈️ Guilherme Delfino de Souza</h3>
+    <p>Linha do Tempo Futura — Meu Plano de Voo · 2025</p>
+  </div>
+  <div class="footer-chips">
+    <div class="footer-chip">🎓 Ciências de Dados</div>
+    <div class="footer-chip">💡 Empreendedorismo</div>
+    <div class="footer-chip">🌍 Tech</div>
+  </div>
+</div>
+
+</body>
+</html>
